@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/pontuacao.css">
+    <title>Tape Dash — Pontuação</title>
+</head>
+<body>
+
+    <div class="scan-lines"></div>
+    <div class="noise"></div>
+
+    <main class="score-wrapper">
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <!-- Cabeçalho -->
+        <header class="score-header">
+            <a href="../index.html" class="back-btn">
+                <i class="ti ti-arrow-left"></i>
+                <span>VOLTAR</span>
+            </a>
+            <div class="header-title">
+                <span class="section-tag">// LEADERBOARD</span>
+                <h1 class="title">PONTUAÇÃO</h1>
+                <div class="title-bar"></div>
+            </div>
+        </header>
+
+        <!-- Melhor pontuação em destaque -->
+        <section class="best-score-section">
+            <div class="best-score-card">
+                <div class="best-label">
+                    <i class="ti ti-trophy"></i>
+                    RECORDE PESSOAL
+                </div>
+                <div class="best-value" id="best-score">000000</div>
+                <div class="best-sub" id="best-date">--/--/----</div>
+            </div>
+        </section>
+
+        <!-- Divisor -->
+        <div class="divider">
+            <span class="divider-label">TOP 10</span>
+        </div>
+
+        <!-- Lista de pontuações -->
+        <section class="scores-section">
+            <div class="scores-table-header">
+                <span class="col-rank">#</span>
+                <span class="col-score">PONTOS</span>
+                <span class="col-date">DATA</span>
+                <span class="col-time">TEMPO</span>
+            </div>
+            <ul class="scores-list" id="scores-list">
+                <!-- preenchido pelo JS -->
+            </ul>
+
+            <!-- Estado vazio -->
+            <div class="empty-state" id="empty-state" style="display:none">
+                <i class="ti ti-database-off"></i>
+                <p>NENHUM REGISTRO ENCONTRADO</p>
+                <span>jogue para registrar sua pontuação</span>
+            </div>
+        </section>
+
+        <!-- Rodapé com ações -->
+        <footer class="score-footer">
+            <button class="btn-clear" id="btn-clear">
+                <i class="ti ti-trash"></i>
+                LIMPAR
+            </button>
+            <a href="jogo.html" class="btn-play">
+                <span>JOGAR</span>
+                <i class="ti ti-player-play"></i>
+            </a>
+        </footer>
+
+    </main>
+
+    <script src="../js/ui-sounds.js"></script>
+    <script src="../js/pontuacao.js"></script>
+</body>
+</html>

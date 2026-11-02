@@ -1,0 +1,493 @@
+/* Ajuste de layout para a página de pontuação */
+body {
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* ── Score Wrapper ── */
+.score-wrapper {
+    position: relative;
+    width: clamp(300px, 90vw, 520px);
+    padding: 28px 28px;
+    background: var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: fade-in 0.5s ease both;
+    margin: auto;
+}
+
+/* ── Header ── */
+.score-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 20px;
+    animation: slide-down 0.4s ease 0.1s both;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.back-btn:hover { color: var(--white); }
+.back-btn i { font-size: 13px; }
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+}
+
+.section-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-light);
+    letter-spacing: 0.2em;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    line-height: 1;
+}
+
+.title-bar {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--white), transparent);
+    margin-top: 3px;
+}
+
+/* ── Best Score Card ── */
+.best-score-section {
+    margin-bottom: 18px;
+    animation: slide-up 0.4s ease 0.2s both;
+}
+
+.best-score-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.best-score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.best-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-light);
+    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.best-label i { font-size: 12px; }
+
+.best-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.best-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.15em;
+}
+
+/* ── Divider ── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    animation: fade-in 0.4s ease 0.3s both;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.divider-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.25em;
+    white-space: nowrap;
+}
+
+/* ── Scores Table ── */
+.scores-section {
+    margin-bottom: 18px;
+    min-height: 120px;
+}
+
+.scores-table-header {
+    display: grid;
+    grid-template-columns: 28px 1fr 84px 62px;
+    gap: 6px;
+    padding: 0 10px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.2em;
+    animation: fade-in 0.4s ease 0.35s both;
+}
+
+.scores-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.score-row {
+    display: grid;
+    grid-template-columns: 28px 1fr 84px 62px;
+    gap: 6px;
+    align-items: center;
+    padding: 9px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.15s ease;
+    animation: slide-up 0.3s ease both;
+}
+
+.score-row:hover { background: rgba(255, 255, 255, 0.03); }
+
+.score-row.rank-1 .col-rank-val { color: var(--white); }
+.score-row.rank-2 .col-rank-val { color: rgba(255,255,255,0.7); }
+.score-row.rank-3 .col-rank-val { color: rgba(255,255,255,0.5); }
+
+.col-rank-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.score-row.rank-1 .col-rank-val::before { content: '▲ '; font-size: 8px; }
+
+.col-score-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+}
+
+.col-date-val,
+.col-time-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.03em;
+}
+
+/* ── Empty state ── */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 36px 0;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.empty-state i { font-size: 28px; }
+
+.empty-state p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+}
+
+.empty-state span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.1em;
+}
+
+/* ── Footer buttons ── */
+.score-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    animation: fade-in 0.4s ease 0.5s both;
+}
+
+.btn-clear {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.3);
+    padding: 9px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-clear:hover {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-play {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--black);
+    text-decoration: none;
+    padding: 10px 22px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transition: opacity 0.2s;
+}
+
+.btn-play:hover { opacity: 0.85; }
+.btn-play i { font-size: 14px; }
+
+/* ── Modal de confirmação ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fade-in 0.2s ease;
+}
+
+.modal-box {
+    background: var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 28px 30px;
+    width: clamp(240px, 80vw, 360px);
+    position: relative;
+    animation: slide-up 0.25s ease;
+}
+
+.modal-box .corner { width: 12px; height: 12px; }
+
+.modal-box p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.modal-box h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 22px;
+}
+
+.modal-actions { display: flex; gap: 8px; }
+
+.modal-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 9px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.modal-cancel:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+.modal-confirm {
+    flex: 1;
+    background: var(--white);
+    border: none;
+    color: var(--black);
+    padding: 9px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.modal-confirm:hover { opacity: 0.85; }
+
+/* ══════════════════════════════════════
+   RESPONSIVIDADE — Pontuação
+   ══════════════════════════════════════ */
+
+/* Tablet (≤ 600px) */
+@media (max-width: 600px) {
+    body {
+        padding: 14px 0;
+    }
+
+    .score-wrapper {
+        width: 94vw;
+        padding: 22px 18px;
+    }
+
+    .score-header {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .best-value {
+        font-size: 2rem;
+    }
+
+    .best-score-card {
+        padding: 14px 16px;
+    }
+
+    /* Esconde coluna DATA em telas pequenas */
+    .scores-table-header,
+    .score-row {
+        grid-template-columns: 26px 1fr 60px;
+    }
+
+    .col-date-val,
+    .scores-table-header .col-date {
+        display: none;
+    }
+
+    .col-score-val {
+        font-size: 12px;
+    }
+
+    .col-time-val {
+        font-size: 9px;
+    }
+
+    .btn-play {
+        padding: 10px 16px;
+        font-size: 11px;
+    }
+
+    .btn-clear {
+        padding: 8px 12px;
+        font-size: 9px;
+    }
+}
+
+/* Mobile pequeno (≤ 380px) */
+@media (max-width: 380px) {
+    .score-wrapper {
+        width: 97vw;
+        padding: 18px 14px;
+    }
+
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .best-value {
+        font-size: 1.7rem;
+    }
+
+    .section-tag,
+    .best-label,
+    .best-sub {
+        font-size: 9px;
+    }
+
+    .result-value {
+        font-size: 14px;
+    }
+
+    .modal-box {
+        padding: 22px 20px;
+    }
+
+    .modal-box h2 {
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+}
+
+/* Paisagem mobile */
+@media (max-height: 500px) and (max-width: 900px) {
+    .best-score-section {
+        margin-bottom: 10px;
+    }
+
+    .best-score-card {
+        padding: 10px 16px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .best-value {
+        font-size: 1.6rem;
+    }
+
+    .scores-section {
+        min-height: 80px;
+    }
+
+    .score-row {
+        padding: 6px 10px;
+    }
+}

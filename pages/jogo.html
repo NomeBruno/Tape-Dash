@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/jogo.css">
+    <title>Tape Dash — Jogo</title>
+</head>
+<body>
+
+    <div class="scan-lines"></div>
+
+    <!-- ── TELA: START ── -->
+    <div class="screen" id="screen-start">
+        <div class="panel">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            <span class="panel-tag">// INICIALIZAR</span>
+            <h1 class="panel-title">TAPE<span class="outline">DASH</span></h1>
+            <p class="panel-desc">
+                Clique nos quadrados antes que desapareçam.<br>
+                Clicar fora ou demorar demais encerra o jogo.
+            </p>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <i class="ti ti-cursor"></i>
+                    <span>CLIQUE NO QUADRADO</span>
+                </div>
+                <div class="rule-item">
+                    <i class="ti ti-clock"></i>
+                    <span>NÃO DEMORE DEMAIS</span>
+                </div>
+                <div class="rule-item">
+                    <i class="ti ti-ban"></i>
+                    <span>NÃO CLIQUE FORA</span>
+                </div>
+                <div class="rule-item">
+                    <i class="ti ti-trending-up"></i>
+                    <span>VELOCIDADE AUMENTA</span>
+                </div>
+            </div>
+            <button class="btn-primary" id="btn-start">
+                <span>INICIAR</span>
+                <i class="ti ti-player-play"></i>
+            </button>
+            <a href="../index.html" class="btn-ghost">VOLTAR AO MENU</a>
+        </div>
+    </div>
+
+    <!-- ── TELA: JOGO ── -->
+    <div class="screen hidden" id="screen-game">
+        <!-- HUD -->
+        <div class="hud">
+            <div class="hud-block">
+                <span class="hud-label">TEMPO</span>
+                <span class="hud-value" id="hud-time">00:00</span>
+            </div>
+            <div class="hud-center">
+                <span class="hud-combo" id="hud-combo"></span>
+            </div>
+            <div class="hud-block right">
+                <span class="hud-label">PONTOS</span>
+                <span class="hud-value" id="hud-score">000000</span>
+            </div>
+        </div>
+
+        <!-- Arena -->
+        <div class="arena" id="arena">
+            <!-- barra de tempo do quadrado atual -->
+            <div class="sq-timer-bar" id="sq-timer-bar"></div>
+            <!-- quadrado gerado via JS -->
+        </div>
+    </div>
+
+    <!-- ── TELA: GAME OVER ── -->
+    <div class="screen hidden" id="screen-over">
+        <div class="panel">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            <span class="panel-tag" id="over-reason">// GAME OVER</span>
+            <h1 class="panel-title over-title">GAME<span class="outline">OVER</span></h1>
+
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="result-label">PONTUAÇÃO</span>
+                    <span class="result-value" id="over-score">000000</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">TEMPO</span>
+                    <span class="result-value" id="over-time">00:00</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">ACERTOS</span>
+                    <span class="result-value" id="over-hits">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">RECORDE</span>
+                    <span class="result-value" id="over-best">000000</span>
+                </div>
+            </div>
+
+            <div class="new-record hidden" id="new-record">
+                <i class="ti ti-trophy"></i> NOVO RECORDE!
+            </div>
+
+            <div class="over-buttons">
+                <button class="btn-primary" id="btn-restart">
+                    <span>JOGAR DE NOVO</span>
+                    <i class="ti ti-refresh"></i>
+                </button>
+                <a href="pontuacao.html" class="btn-ghost">VER PONTUAÇÕES</a>
+                <a href="../index.html" class="btn-ghost small">MENU</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/ui-sounds.js"></script>
+    <script src="../js/music.js"></script>
+    <script src="../js/jogo.js"></script>
+</body>
+</html>

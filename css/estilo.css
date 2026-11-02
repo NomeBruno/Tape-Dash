@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray-dark: #111111;
+    --gray-mid: #222222;
+    --gray-light: #888888;
+    --accent: #ffffff;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── Scan lines overlay ── */
+.scan-lines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.015) 3px,
+        rgba(255, 255, 255, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ── Noise overlay ── */
+.noise {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 9;
+    animation: noise-shift 8s steps(2) infinite;
+}
+
+@keyframes noise-shift {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-2%, 1%); }
+    50%  { transform: translate(1%, -2%); }
+    75%  { transform: translate(2%, 2%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* ── Menu wrapper ── */
+.menu-wrapper {
+    position: relative;
+    width: clamp(320px, 90vw, 560px);
+    padding: 48px 40px;
+    background: var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Corner brackets ── */
+.corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+}
+
+.top-left    { top: -1px;    left: -1px;    border-top: 2px solid var(--white); border-left:  2px solid var(--white); }
+.top-right   { top: -1px;    right: -1px;   border-top: 2px solid var(--white); border-right: 2px solid var(--white); }
+.bottom-left { bottom: -1px; left: -1px;    border-bottom: 2px solid var(--white); border-left:  2px solid var(--white); }
+.bottom-right{ bottom: -1px; right: -1px;   border-bottom: 2px solid var(--white); border-right: 2px solid var(--white); }
+
+/* ── Header / Logo ── */
+.menu-header {
+    margin-bottom: 40px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.logo-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-light);
+    letter-spacing: 0.2em;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    line-height: 1;
+}
+
+.logo-accent {
+    color: var(--black);
+    -webkit-text-stroke: 1.5px var(--white);
+}
+
+.logo-bar {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--white), transparent);
+    margin-top: 4px;
+}
+
+/* ── Nav list ── */
+.menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-item {
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.menu-item:hover {
+    border-left-color: var(--white);
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: var(--gray-light);
+    background: transparent;
+    transition: color 0.2s ease, background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.04);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.menu-link:hover::before {
+    transform: scaleX(1);
+}
+
+.menu-link:hover {
+    color: var(--white);
+}
+
+.item-index {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.menu-link:hover .item-index {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.item-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    flex: 1;
+}
+
+.item-arrow {
+    font-size: 16px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-link:hover .item-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Footer ── */
+.menu-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.15em;
+}
+
+.footer-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+.dot.active {
+    background: var(--white);
+    border-color: var(--white);
+}
+
+/* ── Entrada com animação ── */
+.menu-wrapper {
+    animation: fade-in 0.6s ease both;
+}
+
+.logo-container {
+    animation: slide-down 0.5s ease 0.1s both;
+}
+
+.menu-item:nth-child(1) { animation: slide-up 0.4s ease 0.25s both; }
+.menu-item:nth-child(2) { animation: slide-up 0.4s ease 0.35s both; }
+.menu-item:nth-child(3) { animation: slide-up 0.4s ease 0.45s both; }
+
+.menu-footer {
+    animation: fade-in 0.4s ease 0.55s both;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVIDADE — Menu principal
+   ══════════════════════════════════════ */
+
+/* Tablet (≤ 600px) */
+@media (max-width: 600px) {
+    .menu-wrapper {
+        width: 92vw;
+        padding: 32px 24px;
+    }
+
+    .logo {
+        font-size: 2.2rem;
+    }
+
+    .menu-link {
+        padding: 14px 16px;
+        gap: 14px;
+    }
+
+    .item-label {
+        font-size: 12px;
+        letter-spacing: 0.15em;
+    }
+
+    .menu-footer {
+        margin-top: 28px;
+    }
+}
+
+/* Mobile pequeno (≤ 380px) */
+@media (max-width: 380px) {
+    .menu-wrapper {
+        width: 96vw;
+        padding: 24px 18px;
+    }
+
+    .logo {
+        font-size: 1.9rem;
+    }
+
+    .logo-tag {
+        font-size: 9px;
+    }
+
+    .item-label {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+    }
+
+    .menu-link {
+        padding: 12px 12px;
+    }
+
+    .corner {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Altura muito pequena (paisagem em mobile) */
+@media (max-height: 500px) {
+    .menu-wrapper {
+        padding: 20px 24px;
+    }
+
+    .menu-link {
+        padding: 10px 16px;
+    }
+
+    .menu-footer {
+        margin-top: 18px;
+        padding-top: 14px;
+    }
+}
+
+/* ── Glitch periódico no logo ── */
+.logo.glitch {
+    animation: logo-glitch 0.4s steps(2) both;
+}
+
+@keyframes logo-glitch {
+    0%   { text-shadow: none;  transform: translate(0, 0); }
+    20%  { text-shadow: -3px 0 rgba(255,255,255,0.6), 3px 0 rgba(255,255,255,0.3);
+           transform: translate(2px, 0) skewX(-2deg); }
+    40%  { text-shadow:  3px 0 rgba(255,255,255,0.5);
+           transform: translate(-2px, 1px); clip-path: inset(20% 0 40% 0); }
+    60%  { text-shadow: -2px 0 rgba(255,255,255,0.4);
+           transform: translate(1px, -1px); clip-path: inset(50% 0 10% 0); }
+    80%  { text-shadow: none;
+           transform: translate(-1px, 0) skewX(1deg); clip-path: none; }
+    100% { text-shadow: none; transform: translate(0, 0); clip-path: none; }
+}
